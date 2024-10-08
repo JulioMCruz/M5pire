@@ -1,40 +1,40 @@
-# E5pire
+# M5 Rental Platform
 
-E5pire is a simple, yet powerful, web application designed to help you manage your expenses and track your spending habits. Whether you're a student, a freelancer, or just someone who wants to keep better control of their finances, E5pire has got you covered.
+M5 Rental Platform is a decentralized application (dApp) for renting items, with a focus on snowboard rentals. It utilizes smart contracts on the Ethereum blockchain to facilitate secure and transparent rental transactions.
 
-## Features
+## Smart Contract
 
-- **Expense Tracking:** Easily add and categorize your expenses.
-- **Budget Management:** Set and monitor your budget limits.
-- **Reports:** View detailed reports on your spending patterns.
+The smart contract component of the M5 Rental Platform consists of two main contracts:
 
-## Getting Started
+1. M5RentalContractFactory: This contract is responsible for creating individual rental contracts for each item listed on the platform.
 
-To get started with E5pire, follow these steps:
+2. M5RentalContract: This contract manages the rental process for a specific item, including renting, returning, and handling payments.
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/JulioMCruz/E5pire.git
-   ```
+### Rental Process Flow
 
-2. Install dependencies:
-   ```
-   cd e5pire
-   npm install
-   ```
+The following sequence diagram illustrates the snowboard rental process:
 
-3. Start the development server:
-   ```
-   npm start
-   ```
+[Insert the sequence diagram here]
 
-4. Open your browser and navigate to `http://localhost:3000` to access the application.
+## Frontend
 
-## Contributing
+The frontend of the M5 Rental Platform is built using Next.js, providing a user-friendly interface for interacting with the smart contracts. Key features include:
 
-We welcome contributions to E5pire! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+- Listing items for rent
+- Browsing available rental items
+- Initiating and managing rental transactions
+- Handling payments and collateral
 
-## License
+## Snowboard Rental Process
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+![M5 Rental Platform Overview](SmartContract/images/smart-contract-workflow.png)
 
+## Verifier (Future Implementation)
+
+The Verifier is a planned future implementation that will generate a social score for users based on their email addresses. This feature aims to enhance trust and security within the platform by providing additional user verification.
+
+Key aspects of the Verifier:
+
+- Email-based user verification
+- Social score generation
+- Integration with the rental process for enhanced security
