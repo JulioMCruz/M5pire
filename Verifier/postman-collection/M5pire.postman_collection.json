@@ -9,8 +9,35 @@
 		{
 			"name": "New Request",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"layer-verifier\",\n\"input\": {\n    \"email\": \"bruno@gmail.com\"\n}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://op1.layer-p.net/test",
+					"protocol": "https",
+					"host": [
+						"op1",
+						"layer-p",
+						"net"
+					],
+					"path": [
+						"test"
+					]
+				}
 			},
 			"response": []
 		}
