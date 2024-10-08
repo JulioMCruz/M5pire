@@ -5,19 +5,6 @@ import { Telegraf } from 'telegraf'; // Import session from telegraf
 const bot = new Telegraf(process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN as string);
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
-
-// Question	Answer
-// What is this rental platform about?	This platform allows users to rent personal items from each other using blockchain technology for secure transactions.
-// How does blockchain technology enhance security?	Blockchain ensures all transactions are recorded and immutable, which reduces the risk of fraud.
-// What cryptocurrencies are accepted for payments?	We accept Bitcoin (BTC) and XRP as payment options, in addition to traditional fiat currencies.
-// How does the AR validation process work?	AR technology with AI reviews the condition of items upon return to ensure they meet specified requirements.
-// What happens in case of a dispute?	Disputes will be resolved through the platform, with a structured system in place for fairness.
-// How does the rating system work?	Both renters and item owners will rate each other based on the transaction experience.
-// Are there fees for using the platform?	There are minimal fees associated with transactions, which will be detailed in your user agreement.
-// How does the deposit system function?	A good review history will lower the deposit required for future rentals.
-// Is my crypto payment safe?	Yes, all crypto transactions are secured through our blockchain framework.
-// Can I rent any item or are there restrictions?	Users can rent most items, but certain categories may have restrictions based on local regulations.
-
 // Define messages in JSON objects
 const messages = {
   en: {
@@ -47,7 +34,8 @@ const messages = {
   },
 };
 
-const imagePath = `${baseUrl}/images/M5pire.png`;
+const imagePath = `${baseUrl}/images/M5pireApp.png`;
+
 const replyMarkup = {
     inline_keyboard: [
         [{ text: messages.en.m5pire_app, callback_data: 'm5pire_app', url: process.env.NEXT_PUBLIC_TELEGRAM_APP_URL as string }],
@@ -56,11 +44,6 @@ const replyMarkup = {
         [{ text: messages.en.m5pire_option_03, callback_data: 'm5pire_option_03' }],
         [{ text: messages.en.m5pire_option_04, callback_data: 'm5pire_option_04' }],
         [{ text: messages.en.m5pire_option_05, callback_data: 'm5pire_option_05' }],
-        [{ text: messages.en.m5pire_option_06, callback_data: 'm5pire_option_06' }],
-        [{ text: messages.en.m5pire_option_07, callback_data: 'm5pire_option_07' }],
-        [{ text: messages.en.m5pire_option_08, callback_data: 'm5pire_option_08' }],
-        [{ text: messages.en.m5pire_option_09, callback_data: 'm5pire_option_09' }],
-        [{ text: messages.en.m5pire_option_10, callback_data: 'm5pire_option_10' }],
     ],
 };
 
@@ -82,9 +65,15 @@ bot.on('callback_query', async (ctx) => {
   console.log(callbackData);
 
 if (callbackData === 'm5pire_option_01') {
-  await ctx.reply(messages.en.m5pire_option_01_reply);
+  await ctx.reply(messages.en.m5pire_option_01 + "\n" + messages.en.m5pire_option_01_reply);
 } else if (callbackData === 'm5pire_option_02') {
-  await ctx.reply(messages.en.m5pire_option_01_reply);
+  await ctx.reply(messages.en.m5pire_option_02 + "\n" + messages.en.m5pire_option_02_reply);
+} else if (callbackData === 'm5pire_option_03') {
+  await ctx.reply(messages.en.m5pire_option_03 + "\n" + messages.en.m5pire_option_03_reply);
+} else if (callbackData === 'm5pire_option_04') {
+  await ctx.reply(messages.en.m5pire_option_04 + "\n" + messages.en.m5pire_option_04_reply);
+} else if (callbackData === 'm5pire_option_05') {
+  await ctx.reply(messages.en.m5pire_option_05 + "\n" + messages.en.m5pire_option_05_reply);
 }
   // ... (Handle other callback queries)
 
