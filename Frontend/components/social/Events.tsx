@@ -12,10 +12,15 @@ const users = [
 
 const events = [
   {
+    user: 'Permissionless Hackathon',
+    img: '/social/06.jpg',
+    text: 'Blockworks and Bankless in collaboration with buidlbox are excited to announce the second installment of the Permissionless Hackathon – taking place October 7-8 in Salt Lake City, Utah. We’ve partnered with buidlbox to bring together the brightest minds in crypto for 36 hours of intense hacking.'
+  },
+  {
     user: 'Admin',
     img: '/social/05.jpg',
     text: ' We are Back in 2024! Join us for Canada Crypto Week from August 11-17, 2024, where thousands of individuals will gather for networking, education, and more. Experience tons of events conveniently located at the prestigious Futurist Conference Venue, accessible with your conference badge!'
-  }
+  },
 ]
 
 const Events: FC = () => {

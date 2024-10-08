@@ -260,50 +260,52 @@ const ProductDescription: FC<
       </button>
 
       {showModal && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50 px-3 py-20">
-          <div className="w-full max-w-[500px] rounded-lg bg-white p-8 shadow-lg">
-            <h2 className="mb-4 text-xl font-bold">{title}</h2>
-            <p className="mb-4 text-gray-700">{text}</p>
-            <div className="mb-4">
-              <p>
-                <strong>Start Date:</strong> {bookingDate}
-              </p>
-              <p>
-                <strong>Start Time:</strong> {bookingTime}
-              </p>
-              <p>
-                <strong>End Date:</strong> {endDate}
-              </p>
-              <p>
-                <strong>End Time:</strong> {endTime}
-              </p>
-              <p className="flex flex-wrap items-center gap-[5px] gap-y-0">
-                <strong>Total Price: </strong> ${totalPrice.toFixed(2)} -
-                <span className="flex items-center">
-                  <Image src="/k9-logo.png" alt="xfi" width={15} height={15} /> K9 {totalKPrice.toFixed(2)}
-                </span>{" "}
-                -
-                <span className="flex items-center">
-                  <Image src="/xfi-logo.png" alt="xfi" width={15} height={15} /> XFI {totalXPrice.toFixed(2)}
-                </span>
-              </p>
-            </div>
-            <div className="flex justify-end gap-2 md4:flex-col">
-              <button
-                onClick={() => setShowModal(false)}
-                className="rounded !bg-red-400 px-4 py-2 text-gray-700 hover:!bg-red-500"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleConfirmBooking}
-                className="rounded !bg-green-500 px-4 py-2 text-white hover:!bg-green-600"
-              >
-                Confirm Booking
-              </button>
-            </div>
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-80 px-3 py-20">
+        <div className="w-full max-w-[500px] rounded-lg bg-gray-800 p-8 shadow-lg">
+          <h2 className="mb-4 text-xl font-bold text-white">{title}</h2>
+          <p className="mb-4 text-gray-300">{text}</p>
+          <div className="mb-4 text-gray-300">
+            <p>
+              <strong>Start Date:</strong> {bookingDate}
+            </p>
+            <p>
+              <strong>Start Time:</strong> {bookingTime}
+            </p>
+            <p>
+              <strong>End Date:</strong> {endDate}
+            </p>
+            <p>
+              <strong>End Time:</strong> {endTime}
+            </p>
+            <p className="flex flex-wrap items-center gap-[5px] gap-y-0">
+              <strong>Total Price: </strong> 
+              <span className="text-white">${totalPrice.toFixed(2)}</span> - 
+              <span className="flex items-center">
+                <Image src="/k9-logo.png" alt="k9" width={15} height={15} /> K9 
+                <span className="text-white">{totalKPrice.toFixed(2)}</span>
+              </span> - 
+              <span className="flex items-center">
+                <Image src="/xfi-logo.png" alt="xfi" width={15} height={15} /> XFI 
+                <span className="text-white">{totalXPrice.toFixed(2)}</span>
+              </span>
+            </p>
+          </div>
+          <div className="flex justify-end gap-2 md4:flex-col">
+            <button
+              onClick={() => setShowModal(false)}
+              className="rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleConfirmBooking}
+              className="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+            >
+              Confirm Booking
+            </button>
           </div>
         </div>
+      </div>      
       )}
     </div>
   );

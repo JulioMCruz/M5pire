@@ -13,6 +13,7 @@ import {
 } from "../lib/dynamic";
 
 import Spinner from "./Spinner";
+import { ArrowLeftRight, Key, MessageCircle } from "lucide-react";
 
 export default function HeaderComponent() {
 
@@ -60,6 +61,10 @@ export default function HeaderComponent() {
                   className="flex w-full items-center gap-2 my-4 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700">
                       SocialFi
                   </Link>
+                  <Link key="m-01" href="/myrentals" prefetch={false}
+                  className="flex w-full items-center gap-2 my-4 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700">
+                      My rentals
+                  </Link>
 
             </SheetContent>
           </Sheet>
@@ -81,6 +86,7 @@ export default function HeaderComponent() {
                           className="px-4 py-2 rounded-md hover:bg-accent hover:text-accent-foreground"
                           prefetch={false}
                           >
+                            <ArrowLeftRight size={20} className="inline-block mr-2" />
                           Listings
                           </Link>
                       </NavigationMenuLink>
@@ -92,7 +98,20 @@ export default function HeaderComponent() {
                           className="px-4 py-2 rounded-md hover:bg-accent hover:text-accent-foreground"
                           prefetch={false}
                           >
-                          Social
+                            <MessageCircle size={20}  className="inline-block mr-2" />
+                          SocialFi
+                          </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem key="m-02">
+                      <NavigationMenuLink asChild>
+                          <Link
+                          href="/myrentals"
+                          className="px-4 py-2 rounded-md hover:bg-accent hover:text-accent-foreground"
+                          prefetch={false}
+                          >
+                            <Key size={20}  className="inline-block mr-2" />
+                          My rentals
                           </Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
