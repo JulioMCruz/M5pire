@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Telegraf } from 'telegraf'; // Import session from telegraf
+import jwt from "jsonwebtoken";
+import nodeCrypto from "crypto";
 
 // Replace 'YOUR_TELEGRAM_BOT_TOKEN' with your actual bot token
 const bot = new Telegraf(process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN as string);
@@ -36,20 +38,55 @@ const messages = {
 
 const imagePath = `${baseUrl}/images/M5pireApp.png`;
 
-const replyMarkup = {
-    inline_keyboard: [
-        [{ text: messages.en.m5pire_app, callback_data: 'm5pire_app', url: process.env.NEXT_PUBLIC_TELEGRAM_APP_URL as string }],
-        [{ text: messages.en.m5pire_option_01, callback_data: 'm5pire_option_01' }],
-        [{ text: messages.en.m5pire_option_02, callback_data: 'm5pire_option_02' }],
-        [{ text: messages.en.m5pire_option_03, callback_data: 'm5pire_option_03' }],
-        [{ text: messages.en.m5pire_option_04, callback_data: 'm5pire_option_04' }],
-        [{ text: messages.en.m5pire_option_05, callback_data: 'm5pire_option_05' }],
-    ],
-};
 
 // Handle '/start' command (initial interaction)
 bot.start((ctx) => {
- 
+
+  console.log("****************");
+  console.log(ctx.update);
+  console.log("****************");
+
+  const userData = {
+    authDate: Math.floor(new Date().getTime()),
+    firstName: ctx.update.message.from.first_name,
+    lastName: "",
+    username: ctx.update.message.from.username,
+    id: ctx.update.message.from.id,
+    photoURL: "",
+  }; 
+
+  const hash = generateTelegramHash(userData);
+
+  // Create JWT with user data and hash
+  const telegramAuthToken = jwt.sign(
+    {
+        ...userData,
+        hash,
+    },
+    process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN as string, // Use the bot token to sign the JWT
+    { algorithm: "HS256" }
+  );
+
+  // URL-encode the generated JWT for safe usage in a URL
+  const encodedTelegramAuthToken = encodeURIComponent(telegramAuthToken);     
+
+  const appURL = `${process.env.NEXT_PUBLIC_APP_URL}/?telegramAuthToken=${encodedTelegramAuthToken}`;
+
+  console.log("****************");
+  console.log(appURL);
+  console.log("****************");
+
+  const replyMarkup = {
+    inline_keyboard: [
+      [{ text: messages.en.m5pire_app, web_app: { url: appURL } }],
+      [{ text: messages.en.m5pire_option_01, callback_data: 'm5pire_option_01' }],
+      [{ text: messages.en.m5pire_option_02, callback_data: 'm5pire_option_02' }],
+      [{ text: messages.en.m5pire_option_03, callback_data: 'm5pire_option_03' }],
+      [{ text: messages.en.m5pire_option_04, callback_data: 'm5pire_option_04' }],
+      [{ text: messages.en.m5pire_option_05, callback_data: 'm5pire_option_05' }],
+    ],
+  };
+  
     ctx.replyWithPhoto(imagePath, {
         caption: messages.en.welcome,
         reply_markup: replyMarkup,
@@ -59,10 +96,13 @@ bot.start((ctx) => {
 
 // Handle callback queries
 bot.on('callback_query', async (ctx) => {
+
   const callbackData = ctx.callbackQuery.data;
   //const userId = ctx.from.id;
 
   console.log(callbackData);
+
+
 
 if (callbackData === 'm5pire_option_01') {
   await ctx.reply(messages.en.m5pire_option_01 + "\n" + messages.en.m5pire_option_01_reply);
@@ -76,6 +116,47 @@ if (callbackData === 'm5pire_option_01') {
   await ctx.reply(messages.en.m5pire_option_05 + "\n" + messages.en.m5pire_option_05_reply);
 }
   // ... (Handle other callback queries)
+
+  const userData = {
+    authDate: Math.floor(new Date().getTime()),
+    firstName: ctx.update.callback_query.from.first_name,
+    lastName: "",
+    username: ctx.update.callback_query.from.username,
+    id: ctx.update.callback_query.from.id,
+    photoURL: "",
+  }; 
+
+  const hash = generateTelegramHash(userData);
+
+  // Create JWT with user data and hash
+  const telegramAuthToken = jwt.sign(
+    {
+        ...userData,
+        hash,
+    },
+    process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN as string, // Use the bot token to sign the JWT
+    { algorithm: "HS256" }
+  );
+
+  // URL-encode the generated JWT for safe usage in a URL
+  const encodedTelegramAuthToken = encodeURIComponent(telegramAuthToken);     
+
+  const appURL = `${process.env.NEXT_PUBLIC_APP_URL}/?telegramAuthToken=${encodedTelegramAuthToken}`;
+
+  console.log("****************");
+  console.log(appURL);
+  console.log("****************");
+
+  const replyMarkup = {
+    inline_keyboard: [
+        [{ text: messages.en.m5pire_app, web_app: { url: appURL } }],
+        [{ text: messages.en.m5pire_option_01, callback_data: 'm5pire_option_01' }],
+        [{ text: messages.en.m5pire_option_02, callback_data: 'm5pire_option_02' }],
+        [{ text: messages.en.m5pire_option_03, callback_data: 'm5pire_option_03' }],
+        [{ text: messages.en.m5pire_option_04, callback_data: 'm5pire_option_04' }],
+        [{ text: messages.en.m5pire_option_05, callback_data: 'm5pire_option_05' }],
+    ],
+  };
 
   ctx.reply(messages.en.welcome_reply, {
     reply_markup: replyMarkup,
@@ -106,3 +187,47 @@ export async function POST(request: NextRequest) {
     return new NextResponse('Error', { status: 500 });
   }
 }
+
+/**
+ * Function to generate HMAC hash for Telegram authentication
+ * @param {Object} data - User data to be hashed
+ * @returns {string} - Generated HMAC hash
+ */
+const generateTelegramHash = (data): string => {
+  // Prepare the data object with required fields
+  const userData = {
+      auth_date: String(data.authDate),
+      first_name: data.firstName,
+      id: String(data.id),
+      last_name: data.lastName,
+      photo_url: data.photoURL,
+      username: data.username,
+  };
+
+  // Filter out undefined or empty values from the data object
+  const filteredUseData = Object.entries(userData).reduce(
+      (acc: { [key: string]: string }, [key, value]) => {
+          if (value) acc[key] = value;
+          return acc;
+      },
+      {} as { [key: string]: string }
+  );
+
+  // Sort the entries and create the data check string
+  const dataCheckArr = Object.entries(filteredUseData)
+      .map(([key, value]) => `${key}=${String(value)}`)
+      .sort((a, b) => a.localeCompare(b))
+      .join("\n");
+
+  // Create SHA-256 hash from the bot token
+  const TELEGRAM_SECRET = nodeCrypto
+      .createHash("sha256")
+      .update(process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN as string)
+      .digest();
+
+  // Generate HMAC-SHA256 hash from the data check string
+  return nodeCrypto
+      .createHmac("sha256", TELEGRAM_SECRET)
+      .update(dataCheckArr)
+      .digest("hex");
+};
