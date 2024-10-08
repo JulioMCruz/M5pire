@@ -4,7 +4,7 @@ pragma solidity ^0.8.25;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract BlogNFT is ERC721URIStorage, Ownable {
+contract N5pireSocialNFT is ERC721URIStorage, Ownable {
     uint256 public mintPrice = 0.001 ether;
     uint256 private _tokenIds;
 
