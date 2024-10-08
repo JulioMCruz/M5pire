@@ -10,7 +10,6 @@ import {
   DynamicWidget,
   useTelegramLogin,
   useDynamicContext,
-  DynamicNav
 } from "../lib/dynamic";
 
 import Spinner from "./Spinner";
