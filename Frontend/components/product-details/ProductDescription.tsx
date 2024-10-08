@@ -13,6 +13,7 @@ const ProductDescription: FC<
       id: number;
       img: string;
     }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   | any
 > = ({ title, text, id }) => {
   const [showModal, setShowModal] = useState(false); // Modal state
@@ -20,6 +21,7 @@ const ProductDescription: FC<
   const [bookingDate, setBookingDate] = useState("");
   const [bookingTime, setBookingTime] = useState("");
   const [currentDate, setCurrentDate] = useState<string>("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentTime, setCurrentTime] = useState<string>("");
   const [endTime, setEndTime] = useState("");
   const [endDate, setEndDate] = useState("");
