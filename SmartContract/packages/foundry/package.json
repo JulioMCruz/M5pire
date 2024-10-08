@@ -17,7 +17,10 @@
     "lint": "make lint",
     "test": "make test",
     "verify": "make build-and-verify RPC_URL=${1:-localhost}",
-    "verify-keystore": "make verify-keystore"
+    "verify-keystore": "make verify-keystore",
+    "test:foundry": "forge test",
+    "build:foundry": "forge build"
+    
   },
   "dependencies": {
     "dotenv": "~16.3.1",
