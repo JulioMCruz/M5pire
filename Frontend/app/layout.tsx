@@ -27,6 +27,55 @@ export const metadata: Metadata = {
 
 const dynamicEnvId = process.env.NEXT_PUBLIC_DYNAMIC_ENV_ID;
 
+// Setting up list of evmNetworks
+const evmNetworks = [
+  {
+    blockExplorerUrls: ['https://sepolia.etherscan.io/'],
+    chainId: 11155111,
+    chainName: 'Sepolia',
+    iconUrls: ['https://app.dynamic.xyz/assets/networks/eth.svg'],
+    name: 'Sepolia',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Sepolia Ether',
+      symbol: 'ETH',
+    },
+    networkId: 11155111,
+    rpcUrls: ['https://sepolia.infura.io/v3/'],
+    vanityName: 'Sepolia',
+  },
+{
+    blockExplorerUrls: ['https://explorer.testnet.rsk.co/'],
+    chainId: 31,
+    chainName: 'Rootstock Testnet',
+    iconUrls: ['https://app.dynamic.xyz/assets/networks/eth.svg'],
+    name: 'Rootstock Testnet',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Rootstock Testnet BTC',
+      symbol: 'rBTC',
+    },
+    networkId: 31,
+    rpcUrls: ['https://public-01.testnet.rsk.co/rpc'],
+    vanityName: 'Rootstock Testnet',
+  },
+  {
+    blockExplorerUrls: ['https://evm-sidechain.xrpl.org'],
+    chainId: 1440002,
+    chainName: 'XRPL EVM Sidechain',
+    iconUrls: ["https://app.dynamic.xyz/assets/networks/eth.svg"],
+    name: 'XRPL EVM Sidechain',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'XRP',
+      symbol: 'XRP',
+    },
+    networkId: 1440002,
+    rpcUrls: ['https://rpc-evm-sidechain.xrpl.org'],
+    vanityName: 'XRPL',
+  },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -49,6 +98,7 @@ export default function RootLayout({
         settings={{
           environmentId: dynamicEnvId,
           walletConnectors: [EthereumWalletConnectors],
+          overrides: { evmNetworks },
         }}>      
 
           <ThemeProvider
