@@ -31,10 +31,23 @@ The frontend of the M5 Rental Platform is built using Next.js, providing a user-
 
 ## Verifier (Future Implementation)
 
-The Verifier is a planned future implementation that will generate a social score for users based on their email addresses. This feature aims to enhance trust and security within the platform by providing additional user verification.
+The Verifier is a crucial component of our decentralized ecosystem, designed to enhance trust and security within the M5 Rental Platform. It's a WebAssembly (WASM) project that runs on Layer, marking one of the first steps towards a fully decentralized solution.
 
-Key aspects of the Verifier:
+Key features of the Verifier:
 
-- Email-based user verification
-- Social score generation
-- Integration with the rental process for enhanced security
+- Utilizes the Lay3rLabs / avs-toolkit CLI for development and deployment
+- Implements email-based user verification in a decentralized manner
+- Generates a social score for users, enhancing platform security
+- Runs as a WASM module on Layer, ensuring efficient and secure execution
+- Integrates seamlessly with the rental process for enhanced user trust
+
+The Verifier represents a significant advancement in our decentralized architecture. By leveraging WASM technology and the Layer infrastructure, we're able to perform complex verification tasks off-chain while maintaining the security and transparency benefits of blockchain technology.
+
+Future developments will focus on expanding the Verifier's capabilities, potentially including:
+
+- Integration with decentralized identity solutions
+- Enhanced fraud detection algorithms
+- Cross-platform reputation systems
+
+As we continue to develop the Verifier, we're moving closer to our goal of a fully decentralized, secure, and efficient rental platform.
+
