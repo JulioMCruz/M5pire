@@ -56,13 +56,9 @@ export default function HeaderComponent() {
                   className="flex w-full items-center gap-2 my-4 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700">
                       Listings
                   </Link>
-                  <Link key="m-01" href="/" prefetch={false}
+                  <Link key="m-01" href="/socialfi" prefetch={false}
                   className="flex w-full items-center gap-2 my-4 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700">
-                      Page 2
-                  </Link>
-                  <Link key="m-01" href="/" prefetch={false}
-                  className="flex w-full items-center gap-2 my-4 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700">
-                      Page 3
+                      SocialFi
                   </Link>
 
             </SheetContent>
@@ -92,22 +88,11 @@ export default function HeaderComponent() {
                     <NavigationMenuItem key="m-02">
                       <NavigationMenuLink asChild>
                           <Link
-                          href="/"
+                          href="/socialfi"
                           className="px-4 py-2 rounded-md hover:bg-accent hover:text-accent-foreground"
                           prefetch={false}
                           >
-                          Page 2
-                          </Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem key="m-03">
-                      <NavigationMenuLink asChild>
-                          <Link
-                          href="/"
-                          className="px-4 py-2 rounded-md hover:bg-accent hover:text-accent-foreground"
-                          prefetch={false}
-                          >
-                          Page 3
+                          Social
                           </Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
