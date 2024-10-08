@@ -52,9 +52,9 @@ export default function HeaderComponent() {
                 <SheetTitle>M5pire</SheetTitle>
               </SheetHeader>
 
-                  <Link key="m-01" href="/" prefetch={false}
+                  <Link key="m-01" href="/listings" prefetch={false}
                   className="flex w-full items-center gap-2 my-4 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700">
-                      Page 1
+                      Listings
                   </Link>
                   <Link key="m-01" href="/" prefetch={false}
                   className="flex w-full items-center gap-2 my-4 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -81,11 +81,11 @@ export default function HeaderComponent() {
                     <NavigationMenuItem key="m-01">
                       <NavigationMenuLink asChild>
                           <Link
-                          href="/"
+                          href="/listings"
                           className="px-4 py-2 rounded-md hover:bg-accent hover:text-accent-foreground"
                           prefetch={false}
                           >
-                          Page 1
+                          Listings
                           </Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
