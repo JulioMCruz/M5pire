@@ -1,0 +1,2 @@
+cargo:rustc-link-lib=wit_bindgen_cabi_realloc0_32_0
+cargo:rustc-link-search=native=/Users/brunomoniz/dev/permissionless/M5pire/Verifier/avs-toolkit-main/target/wasm32-wasip1/release/build/wit-bindgen-rt-3ba576e5ed9cb493/out
