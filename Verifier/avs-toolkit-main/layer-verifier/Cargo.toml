@@ -1,0 +1,30 @@
+[package]
+name = "layer-verifier"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+layer-wasi = { git = "https://github.com/Lay3rLabs/avs-toolkit", version = "0.1.1" }
+wit-bindgen-rt = { workspace = true, features = ["bitflags"] }
+anyhow = { workspace = true }  # Herdando do workspace
+serde = { workspace = true }  # Herdando do workspace
+serde_json = { workspace = true }  # Herdando do workspace
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+codegen-units = 1
+opt-level = "s"
+debug = false
+strip = true
+lto = true
+
+[package.metadata.component]
+package = "component:layer-verifier"
+target = "lay3r:avs/task-queue@0.3.0"
+
+[package.metadata.component.dependencies]
