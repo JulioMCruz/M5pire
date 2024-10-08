@@ -6,9 +6,13 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import { WagmiProvider } from 'wagmi';
+import { config } from "@/lib/wagmi";
+
 import {
   DynamicContextProvider,
   EthereumWalletConnectors,
+  DynamicWagmiConnector
 } from "../lib/dynamic";
 
 
@@ -105,24 +109,28 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <QueryClientProvider client={queryClient}>
           <DynamicContextProvider
           settings={{
             environmentId: dynamicEnvId,
             walletConnectors: [EthereumWalletConnectors],
             overrides: { evmNetworks },
           }}>      
+            <WagmiProvider config={config}>
+              <QueryClientProvider client={queryClient}>
+              <DynamicWagmiConnector>
 
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="dark"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-            </ThemeProvider>        
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="dark"
+                  enableSystem
+                  disableTransitionOnChange
+                >
+                  {children}
+                </ThemeProvider>     
+              </DynamicWagmiConnector>
+              </QueryClientProvider>
+            </WagmiProvider>
           </DynamicContextProvider>
-        </QueryClientProvider>
       </body>
     </html>
   );

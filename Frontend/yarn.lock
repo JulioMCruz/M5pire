@@ -3562,7 +3562,7 @@
     "@walletconnect/modal" "2.7.0"
     cbw-sdk "npm:@coinbase/wallet-sdk@3.9.3"
 
-"@wagmi/core@^2.6.4", "@wagmi/core@2.13.8":
+"@wagmi/core@^2.13.8", "@wagmi/core@^2.6.4", "@wagmi/core@2.13.8":
   version "2.13.8"
   resolved "https://registry.npmjs.org/@wagmi/core/-/core-2.13.8.tgz"
   integrity sha512-bX84cpLq3WWQgGthJlSgcWPAOdLzrP/W0jnbz5XowkCUn6j/T77WyxN5pBb+HmLoJf3ei9tkX9zWhMpczTc3cA==
