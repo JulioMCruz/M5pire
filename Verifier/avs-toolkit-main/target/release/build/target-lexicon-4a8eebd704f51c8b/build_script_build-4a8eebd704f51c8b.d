@@ -1,0 +1,8 @@
+/Users/brunomoniz/dev/permissionless/M5pire/Verifier/avs-toolkit-main/target/release/build/target-lexicon-4a8eebd704f51c8b/build_script_build-4a8eebd704f51c8b: /Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/build.rs /Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/src/data_model.rs /Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/src/triple.rs /Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/src/targets.rs
+
+/Users/brunomoniz/dev/permissionless/M5pire/Verifier/avs-toolkit-main/target/release/build/target-lexicon-4a8eebd704f51c8b/build_script_build-4a8eebd704f51c8b.d: /Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/build.rs /Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/src/data_model.rs /Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/src/triple.rs /Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/src/targets.rs
+
+/Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/build.rs:
+/Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/src/data_model.rs:
+/Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/src/triple.rs:
+/Users/brunomoniz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/target-lexicon-0.12.16/src/targets.rs:
