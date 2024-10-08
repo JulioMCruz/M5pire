@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import styles from "~~/components/create-product/CreateProduct.module.scss";
-import ProductForm from "~~/components/create-product/ProductForm";
+import styles from "../../../components/create-product/CreateProduct.module.scss";
+import ProductForm from "../../../components/create-product/ProductForm";
 
 export default function CreateProduct() {
   const [image, setImage] = useState("");
