@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./ProductDetails.module.scss";
 import { CircleUserRound, ShoppingCart } from "lucide-react";
+import RentItemButton from "../RentItemButton";
+import ReturnItemButton from "../ReturnItemButton";
 
 const ProductDescription: FC<
   | {
@@ -15,8 +17,10 @@ const ProductDescription: FC<
     }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   | any
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 > = ({ title, text, id }) => {
   const [showModal, setShowModal] = useState(false); // Modal state
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isBooked, setIsBooked] = useState(false);
   const [bookingDate, setBookingDate] = useState("");
   const [bookingTime, setBookingTime] = useState("");
@@ -28,6 +32,7 @@ const ProductDescription: FC<
   const [totalKPrice, setTotalKPrice] = useState(0);
   const [totalXPrice, setTotalXPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0); // State to track the calculated price
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const router = useRouter();
 
   const hourlyRate = 5;
@@ -118,30 +123,30 @@ const ProductDescription: FC<
     setShowModal(true); // Show modal on button click
   };
 
-  const handleConfirmBooking = () => {
-    const rental = {
-      productTitle: title,
-      productId: id,
-      bookingDate,
-      bookingTime,
-      endDate,
-      endTime,
-      totalPrice,
-    };
+  // const handleConfirmBooking = () => {
+  //   const rental = {
+  //     productTitle: title,
+  //     productId: id,
+  //     bookingDate,
+  //     bookingTime,
+  //     endDate,
+  //     endTime,
+  //     totalPrice,
+  //   };
 
-    // Store the rental in localStorage
-    const storedRentals = JSON.parse(localStorage.getItem("rentals") || "[]");
-    storedRentals.push(rental);
-    localStorage.setItem("rentals", JSON.stringify(storedRentals));
+  //   // Store the rental in localStorage
+  //   const storedRentals = JSON.parse(localStorage.getItem("rentals") || "[]");
+  //   storedRentals.push(rental);
+  //   localStorage.setItem("rentals", JSON.stringify(storedRentals));
 
-    setIsBooked(true);
-    setShowModal(false); // Hide modal after confirmation
+  //   setIsBooked(true);
+  //   setShowModal(false); // Hide modal after confirmation
 
-    // Redirect to My Rentals after booking
-    setTimeout(() => {
-      router.push("/myrentals");
-    }, 1000); // Delay to allow user to see the confirmation
-  };
+  //   // Redirect to My Rentals after booking
+  //   setTimeout(() => {
+  //     router.push("/myrentals");
+  //   }, 1000); // Delay to allow user to see the confirmation
+  // };
 
   return (
     <div className={styles.product_details__description}>
@@ -259,6 +264,10 @@ const ProductDescription: FC<
         <span>{isBooked ? "Already Booked" : "Initiate rental"}</span>
       </button>
 
+          <div className="flex justify-end mt-4">
+            <ReturnItemButton />
+          </div>
+
       {showModal && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-80 px-3 py-20">
         <div className="w-full max-w-[500px] rounded-lg bg-gray-800 p-8 shadow-lg">
@@ -297,12 +306,13 @@ const ProductDescription: FC<
             >
               Cancel
             </button>
-            <button
+            {/* <button
               onClick={handleConfirmBooking}
               className="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
             >
               Confirm Booking
-            </button>
+            </button> */}
+            <RentItemButton />
           </div>
         </div>
       </div>      
