@@ -123,30 +123,30 @@ const ProductDescription: FC<
     setShowModal(true); // Show modal on button click
   };
 
-  // const handleConfirmBooking = () => {
-  //   const rental = {
-  //     productTitle: title,
-  //     productId: id,
-  //     bookingDate,
-  //     bookingTime,
-  //     endDate,
-  //     endTime,
-  //     totalPrice,
-  //   };
+  const handleConfirmBooking = () => {
+    const rental = {
+      productTitle: title,
+      productId: id,
+      bookingDate,
+      bookingTime,
+      endDate,
+      endTime,
+      totalPrice,
+    };
 
-  //   // Store the rental in localStorage
-  //   const storedRentals = JSON.parse(localStorage.getItem("rentals") || "[]");
-  //   storedRentals.push(rental);
-  //   localStorage.setItem("rentals", JSON.stringify(storedRentals));
+    // Store the rental in localStorage
+    const storedRentals = JSON.parse(localStorage.getItem("rentals") || "[]");
+    storedRentals.push(rental);
+    localStorage.setItem("rentals", JSON.stringify(storedRentals));
 
-  //   setIsBooked(true);
-  //   setShowModal(false); // Hide modal after confirmation
+    setIsBooked(true);
+    setShowModal(false); // Hide modal after confirmation
 
-  //   // Redirect to My Rentals after booking
-  //   setTimeout(() => {
-  //     router.push("/myrentals");
-  //   }, 1000); // Delay to allow user to see the confirmation
-  // };
+    // Redirect to My Rentals after booking
+    setTimeout(() => {
+      router.push("/myrentals");
+    }, 1000); // Delay to allow user to see the confirmation
+  };
 
   return (
     <div className={styles.product_details__description}>
@@ -306,12 +306,12 @@ const ProductDescription: FC<
             >
               Cancel
             </button>
-            {/* <button
+            <button
               onClick={handleConfirmBooking}
               className="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
             >
               Confirm Booking
-            </button> */}
+            </button>
             <RentItemButton />
           </div>
         </div>
