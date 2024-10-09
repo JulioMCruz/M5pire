@@ -177,7 +177,6 @@ if (callbackData === 'm5pire_option_01') {
 // Handle generic text messages
 bot.on('text', async (ctx) => {
   const userMessage = ctx.message.text;
-  const lang = ctx.session.lang || 'es';
 
   try {
     const response = await openai.chat.completions.create({
