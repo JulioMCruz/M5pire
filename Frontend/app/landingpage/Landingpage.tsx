@@ -1,6 +1,8 @@
 "use client";
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
+import { useAccount } from 'wagmi';
+import { useRouter } from 'next/navigation';
 
 const Landingpage = () => {
   useEffect(() => {
@@ -20,7 +22,13 @@ const Landingpage = () => {
   }, []);
 
   const letters = ['M', '5', 'p', 'i', 'r', 'e'];
-
+  const { address } = useAccount()
+  const router= useRouter()
+  useEffect(() => {
+    if (address) {
+      router.push("/listings");
+    }
+  }, [address]);
   return (
     <div className="flex items-center justify-center h-screen bg-black">
       <h1 className="text-white text-8xl font-bold">
