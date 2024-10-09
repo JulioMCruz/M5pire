@@ -2,15 +2,22 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Telegraf } from 'telegraf'; // Import session from telegraf
 import jwt from "jsonwebtoken";
 import nodeCrypto from "crypto";
+import OpenAI from "openai";
+
 
 // Replace 'YOUR_TELEGRAM_BOT_TOKEN' with your actual bot token
 const bot = new Telegraf(process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN as string);
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
 
+// OpenAI setup
+const openai = new OpenAI({
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+});
+
 // Define messages in JSON objects
 const messages = {
   en: {
-    welcome: 'Welcome to M5pire! . Rent Local, Explore Mighty.\nPlease select an option:',
+    welcome: 'Welcome to M5pire! . Rent Local, Explore Mighty.\nPlease select an option or type your favorite outdoor sport:',
     welcome_reply: '\nPlease select an option:',
     m5pire_option_01: 'What is this rental platform about?',
     m5pire_option_01_reply: 'This platform allows users to rent personal items from each other using blockchain technology for secure transactions.',
@@ -33,6 +40,7 @@ const messages = {
     m5pire_option_10: 'Can I rent any item or are there restrictions?',
     m5pire_option_10_reply: 'Users can rent most items, but certain categories may have restrictions based on local regulations.',
     m5pire_app: 'M5pire App',
+    m5pire_option_ai_chat: 'M5pire AI Recomendations',
   },
 };
 
@@ -84,6 +92,7 @@ bot.start((ctx) => {
       [{ text: messages.en.m5pire_option_03, callback_data: 'm5pire_option_03' }],
       [{ text: messages.en.m5pire_option_04, callback_data: 'm5pire_option_04' }],
       [{ text: messages.en.m5pire_option_05, callback_data: 'm5pire_option_05' }],
+      [{ text: messages.en.m5pire_option_ai_chat, callback_data: 'm5pire_option_ai_chat' }],
     ],
   };
   
@@ -103,7 +112,6 @@ bot.on('callback_query', async (ctx) => {
   console.log(callbackData);
 
 
-
 if (callbackData === 'm5pire_option_01') {
   await ctx.reply(messages.en.m5pire_option_01 + "\n" + messages.en.m5pire_option_01_reply);
 } else if (callbackData === 'm5pire_option_02') {
@@ -114,6 +122,8 @@ if (callbackData === 'm5pire_option_01') {
   await ctx.reply(messages.en.m5pire_option_04 + "\n" + messages.en.m5pire_option_04_reply);
 } else if (callbackData === 'm5pire_option_05') {
   await ctx.reply(messages.en.m5pire_option_05 + "\n" + messages.en.m5pire_option_05_reply);
+} else if (callbackData === 'm5pire_option_ai_chat') {
+  await ctx.reply("Type your favorite outdoor sport:");
 }
   // ... (Handle other callback queries)
 
@@ -165,9 +175,31 @@ if (callbackData === 'm5pire_option_01') {
 });
 
 // Handle generic text messages
-//bot.on('text', async (ctx) => {
-  // const userMessage = ctx.message.text;
-//});
+bot.on('text', async (ctx) => {
+  const userMessage = ctx.message.text;
+  const lang = ctx.session.lang || 'es';
+
+  try {
+    const response = await openai.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+            { role: "system", content: "You are a web3 defi expert." },
+            {
+                role: "user",
+                content: `I'm in Utah now and I like ${userMessage}. Suggest a suitable thinks to do, and tell me what are the best places to do my sport.`,
+            },
+        ],        
+    });
+
+    console.log(response);
+
+    const answer = response.choices[0].message?.content ?? '';
+    await ctx.reply(answer);
+  } catch (error) {
+    console.error('Error with OpenAI API:', error);
+    await ctx.reply('Sorry, I am having trouble answering your question right now.');
+  }
+});
 
 // Handle other commands or messages
 // ... (Implement logic to process user input, generate recommendations, etc.)
