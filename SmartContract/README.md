@@ -78,3 +78,12 @@ To know more about its features, check out our [website](https://scaffoldeth.io)
 We welcome contributions to Scaffold-ETH 2!
 
 Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+
+RentalContract V1 : RootStock
+Address: 0xD66D2D5F1114d6F6ee30cEbE2562806aFC23F3E6
+
+RentalContract V1 : RXPL
+Address: 0xD66D2D5F1114d6F6ee30cEbE2562806aFC23F3E6
+
+RentalContract V1 : Sepolia
+Address: 0x10EAd36243C61e308e5F97ad8F892Ff8a5716D27
