@@ -1,4 +1,6 @@
 "use client";
+import { House } from "lucide-react";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 interface Rental {
@@ -93,6 +95,16 @@ const MyRental: React.FC = () => {
 
   return (
     <div className="p-2 pt-20 m-11">
+        <div className="mb-12">
+        <Link
+                          href="/listings"
+                          className="px-2 py-2 rounded-md hover:bg-accent hover:text-accent-foreground"
+                          prefetch={false}
+                          >
+                            <House size={20} className="inline-block mr-2" />
+                          Home
+                          </Link>
+                          </div>
       <h2 className="mb-4 text-2xl font-bold">My Rentals</h2>
       {rentals.length > 0 ? (
         <ul className="space-y-4">

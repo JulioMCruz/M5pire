@@ -14,7 +14,6 @@ import {
 
 import Spinner from "./Spinner";
 import { ArrowLeftRight, Key, MessageCircle } from "lucide-react";
-
 export default function HeaderComponent() {
 
   const { sdkHasLoaded, user } = useDynamicContext();
@@ -23,13 +22,13 @@ export default function HeaderComponent() {
 
   useEffect(() => {
     if (!sdkHasLoaded) return;
-    // console.log("sdkHasLoaded - true");
+      console.log("sdkHasLoaded - true");
     
     const signIn = async () => {
       if (!user) {
-        // console.log("user - signing in");
+         console.log("user - signing in");
         await telegramSignIn({ forceCreateUser: true });
-        // console.log("user - telegramSignIn");
+         console.log("user - telegramSignIn");
       }
       setIsLoading(false);
     };
@@ -70,7 +69,7 @@ export default function HeaderComponent() {
           </Sheet>
         </nav>
 
-        <Link href="/" className="mr-6 flex items-center" prefetch={false}>
+        <Link href="/landingpage" className="mr-6 flex items-center" prefetch={false}>
           <Image src="/images/M5pire.png" alt={`M5pire logo`} width={60} height={60} className="h-fit"/>
           <span className="sr-only">M5pire</span>
         </Link>{" "}
@@ -152,3 +151,5 @@ function MenuIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
+
+
