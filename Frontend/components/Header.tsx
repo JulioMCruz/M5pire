@@ -65,6 +65,10 @@ export default function HeaderComponent() {
                   className="flex w-full items-center gap-2 my-4 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700">
                       My rentals
                   </Link>
+                  <Link key="m-01" href="/return" prefetch={false}
+                  className="flex w-full items-center gap-2 my-4 px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700">
+                      Return
+                  </Link>
 
             </SheetContent>
           </Sheet>
@@ -112,6 +116,18 @@ export default function HeaderComponent() {
                           >
                             <Key size={20}  className="inline-block mr-2" />
                           My rentals
+                          </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem key="m-02">
+                      <NavigationMenuLink asChild>
+                          <Link
+                          href="/return"
+                          className="px-4 py-2 rounded-md hover:bg-accent hover:text-accent-foreground"
+                          prefetch={false}
+                          >
+                            <Key size={20}  className="inline-block mr-2" />
+                          Return
                           </Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
